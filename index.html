@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="images/favicon.ico" />
+  <link rel="stylesheet preload" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="main.js" defer></script>
+  <title>회원가입</title>
+</head>
+
+<body>
+  <main class="register_container">
+    <h2 class="register_title">회원가입</h2>
+    <div class="require">
+      <img style="padding-left: 4px; padding-bottom: 10px" src="images/Require.svg" alt="필수입력사항 표시" />필수입력사항
+    </div>
+
+    <div class="line_bold" role="presentation"></div>
+
+    <form method="post">
+      <fieldset>
+        <legend class="sr_only">회원가입</legend>
+
+        <div class="user_id_wrapper">
+          <label for="user_id" class="user_id_label">아이디<img style="padding-left: 4px; padding-bottom: 10px"
+              src="images/Require.svg" alt="필수입력사항 표시" /></label>
+          <input required type="text" id="user_id" class="user_id_input" name="user_id" placeholder="아이디를 입력해주세요"
+            aria-invalid="false" aria-describedby="user_id_error" />
+          <button type="button" class="duplicate_id_btn">중복확인</button>
+          <span class="error_message" id="user_id_error">
+            6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합
+          </span>
+        </div>
+
+        <!-- 아이디 유효성 알림창 -->
+        <div class="duplicate_alert_container" role="alert">
+          <div class="duplicate_alert_box">
+            <p class="duplicate_alert_text">
+              6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합
+            </p>
+            <button class="duplicate_alert_btn" type="button">확인</button>
+          </div>
+        </div>
+
+        <div class="user_password_wrapper">
+          <label for="user_password" class="user_password_label">비밀번호<img
+              style="padding-left: 4px; padding-bottom: 10px" src="images/Require.svg" alt="필수입력사항 표시" /></label>
+          <input required type="password" id="user_password" name="user_password" class="user_password_input"
+            placeholder="비밀번호를 입력해주세요" aria-invalid="false" aria-describedby="user_password_error" />
+          <span class="error_message" id="user_password_error">
+            비밀번호는 숫자, 문자, 특수문자를 조합해서 6자리 이상
+          </span>
+        </div>
+
+        <div class="user_password_check_wrapper">
+          <label for="user_password_check" class="user_password_check_label">비밀번호 확인<img
+              style="padding-left: 4px; padding-bottom: 10px" src="images/Require.svg" alt="필수입력사항 표시" /></label>
+          <input required type="password" id="user_password_check" name="user_password_check"
+            class="user_password_check_input" placeholder="비밀번호를 한번 더 입력해주세요" aria-invalid="false"
+            aria-describedby="user_password_check_error" />
+          <span class="error_message" id="user_password_check_error">
+            동일한 비밀번호를 입력
+          </span>
+        </div>
+
+        <div class="user_name_wrapper">
+          <label for="user_name" class="user_name_label">이름<img style="padding-left: 4px; padding-bottom: 10px"
+              src="images/Require.svg" alt="필수입력사항 표시" /></label>
+          <input required type="text" id="user_name" name="user_name" class="user_name_input"
+            placeholder="이름을 입력해주세요" />
+        </div>
+
+        <div class="user_email_wrapper">
+          <label for="user_email" class="user_email_label">이메일<img style="padding-left: 4px; padding-bottom: 10px"
+              src="images/Require.svg" alt="필수입력사항 표시" /></label>
+          <input required type="email" id="user_email" name="user_email" class="user_email_input"
+            placeholder="예) marketkarly@karly.com" aria-invalid="false" aria-describedby="user_email_error" />
+          <button type="button" class="duplicate_email_btn">중복확인</button>
+          <span class="error_message" id="user_email_error">
+            이메일 형식으로 입력해 주세요.
+          </span>
+        </div>
+
+        <!-- 이메일 중복확인 알림창 -->
+        <div class="duplicate_email_alert_container" role="alert">
+          <div class="duplicate_email_alert_box">
+            <p class="duplicate_email_alert_text">
+              사용 가능한 이메일 입니다.
+            </p>
+            <button class="duplicate_email_alert_btn" type="button">
+              확인
+            </button>
+          </div>
+        </div>
+
+        <!-- 인증번호 확인 알림창 -->
+        <div class="duplicate_number_alert_container" role="alert">
+          <div class="duplicate_number_alert_box">
+            <p class="duplicate_number_alert_text">
+              사용 가능한 이메일 입니다.
+            </p>
+            <button class="duplicate_number_alert_btn" type="button">
+              확인
+            </button>
+          </div>
+        </div>
+
+        <div class="user_gender_wrapper">
+          <div class="user_gender_label">성별</div>
+          <div class="gender_radio_wrapper">
+            <input class="sr_only" type="radio" name="gender" id="user_gender_male" value="male" />
+            <label for="user_gender_male">남자</label>
+            <input class="sr_only" type="radio" name="gender" id="user_gender_female" value="female" />
+            <label for="user_gender_female">여자</label>
+            <input class="sr_only" type="radio" name="gender" id="user_gender_none" value="none" checked />
+            <label for="user_gender_none">선택안함</label>
+          </div>
+        </div>
+
+        <div class="line_nomal" role="presentation"></div>
+
+        <div class="user_agree_info_wrapper">
+          <div class="user_agree_info_label">
+            이용약관동의
+            <img style="padding-left: 4px; padding-bottom: 10px" src="images/Require.svg" alt="필수입력사항 표시" />
+          </div>
+          <div class="agree_info_wrapper">
+            <div class="agree_check_box">
+              <input type="checkbox" name="agree_all" id="agree_all" class="agree_all_input sr_only" />
+              <div class="agree_all">
+                <label for="agree_all" class="agree_all_label">전체 동의합니다.</label>
+                <p class="agree_all_text">
+                  선택항목에 동의하지 않은 경우도 회원가입 및 일반적인
+                  서비스를 이용할 수 있습니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="agree_check_box">
+              <input class="sr_only" type="checkbox" name="check_1" id="check_1" />
+              <div class="agree_check">
+                <label for="check_1">이용약관 동의 (필수)</label>
+                <button type="button" class="agree_ckeck_btn">
+                  약관보기
+                </button>
+              </div>
+            </div>
+
+            <div class="agree_check_box">
+              <input class="sr_only" type="checkbox" name="check_2" id="check_2" />
+              <div class="agree_check">
+                <label for="check_2">개인정보 수집 · 이용 동의 (필수)</label>
+                <button type="button" class="agree_ckeck_btn">
+                  약관보기
+                </button>
+              </div>
+            </div>
+
+            <div class="agree_check_box">
+              <input class="sr_only" type="checkbox" name="check_3" id="check_3" />
+              <div class="agree_check">
+                <label for="check_3">무료배송, 할인쿠폰 등 혜택/정보 수신 동의 (선택)</label>
+                <button type="button" class="agree_ckeck_btn">
+                  약관보기
+                </button>
+              </div>
+            </div>
+
+            <div class="agree_check_box">
+              <input class="sr_only" type="checkbox" name="check_4" id="check_4" />
+              <div class="agree_check">
+                <label for="check_4">본인은 만 14세 이상입니다. (필수)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <div class="line_thin" role="presentation"></div>
+    <div class="join_btn_wrapper">
+      <!-- <button type="button" class="join_btn disable_btn" disabled> -->
+      <button type="button" class="join_btn">
+        가입하기
+      </button>
+    </div>
+  </main>
+</body>
+
+</html>
